@@ -72,10 +72,14 @@ class MainActivity : AppCompatActivity() {
         var isPasswordOk = registerVerify.isLoginPasswordVerify(pwd)
 
         if (isLoginIdOK && isPasswordOk) {
+            // 註冊成功 儲存ID
+            Repository(this).saveUserId(loginId)
+
             AlertDialog.Builder(this)
                     .setTitle("提示")
-                    .setMessage("登入成功")
+                    .setMessage("註冊成功")
                     .show()
+
         } else {
             if (!isLoginIdOK) {
                 Toast.makeText(this, "帳號不符規則", Toast.LENGTH_SHORT).show()
