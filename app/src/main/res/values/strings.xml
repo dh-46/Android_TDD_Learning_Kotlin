@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Android_TDD_Learning_Kotlin</string>
+    <string name="sample_info">功能描述：\n
+        1.帳號至少需6碼，第1碼為英文。\n
+        2.密碼至少需8碼，第1碼為英文，並包含1碼數字。\n
+        3.點擊「註冊」，若失敗則使用AlertDialg告訴使用者失敗原因。\n
+        4.點擊「註冊」，若成功則導至註冊成功頁。\n\n
+        這個範例先不考慮要儲存註冊會員需要呼叫Web API。只是單純的將帳號密碼填好後，做資料檢查，如果符合帳號及密碼的格式，我們就視為成功。</string>
+</resources>
