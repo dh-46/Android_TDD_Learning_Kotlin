@@ -3,9 +3,9 @@ package tw.dh46.android_tdd_learning_kotlin
 import android.content.Context
 import android.content.SharedPreferences
 import org.junit.Test
-import org.mockito.ArgumentMatcher
 import org.mockito.ArgumentMatchers
 import org.mockito.Mockito.*
+import tw.dh46.android_tdd_learning_kotlin.repository.Repository
 
 /**
  *  Created by DanielHuang on 2020/4/9

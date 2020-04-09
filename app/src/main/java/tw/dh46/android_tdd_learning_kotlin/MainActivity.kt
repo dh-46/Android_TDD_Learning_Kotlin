@@ -2,11 +2,11 @@ package tw.dh46.android_tdd_learning_kotlin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import tw.dh46.android_tdd_learning_kotlin.repository.Repository
 import tw.dh46.android_tdd_learning_kotlin.verification.RegisterVerify
 
 /**

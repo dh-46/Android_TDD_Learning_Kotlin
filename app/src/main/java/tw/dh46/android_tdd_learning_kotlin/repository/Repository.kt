@@ -1,4 +1,4 @@
-package tw.dh46.android_tdd_learning_kotlin
+package tw.dh46.android_tdd_learning_kotlin.repository
 
 import android.content.Context
 
@@ -20,4 +20,6 @@ class Repository(private val context: Context) {
         val sharedPreferences = context.getSharedPreferences("UserData", Context.MODE_PRIVATE)
         sharedPreferences.edit().putString("UserId", id).commit()
     }
+
+
 }
