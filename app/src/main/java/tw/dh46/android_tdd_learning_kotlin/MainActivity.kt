@@ -1,5 +1,6 @@
 package tw.dh46.android_tdd_learning_kotlin
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -75,17 +76,12 @@ class MainActivity : AppCompatActivity() {
         if (isLoginIdOK && isPasswordOk) {
             // 註冊成功 儲存ID
             Repository(this).saveUserId(loginId)
-
-            AlertDialog.Builder(this)
-                    .setTitle("提示")
-                    .setMessage("註冊成功")
-                    .show()
-
+            // 開啟成功畫面
+            startActivity(Intent(this, ResultActivity::class.java))
         } else {
             if (!isLoginIdOK) {
                 Toast.makeText(this, "帳號不符規則", Toast.LENGTH_SHORT).show()
-            }
-            if (!isPasswordOk) {
+            } else if (!isPasswordOk) {
                 Toast.makeText(this, "密碼不符規則", Toast.LENGTH_SHORT).show()
             }
         }
