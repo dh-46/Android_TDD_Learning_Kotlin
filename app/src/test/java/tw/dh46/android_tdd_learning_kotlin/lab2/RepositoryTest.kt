@@ -1,11 +1,10 @@
-package tw.dh46.android_tdd_learning_kotlin
+package tw.dh46.android_tdd_learning_kotlin.lab2
 
 import android.content.Context
 import android.content.SharedPreferences
 import org.junit.Test
 import org.mockito.ArgumentMatchers
 import org.mockito.Mockito.*
-import tw.dh46.android_tdd_learning_kotlin.repository.Repository
 
 /**
  *  Created by DanielHuang on 2020/4/9
@@ -56,7 +55,8 @@ class RepositoryTest {
         ).thenReturn(mockSharedPrefsEditor)
 
         // 3. 執行被測試物件 => 呼叫repository.saveUserId()
-        val repository = Repository(mockContext)
+        val repository =
+            Repository(mockContext)
         repository.saveUserId(userId)
 
         // 4. 使用verify method，驗證模擬物件是否有呼叫putString，並傳入正確的參數

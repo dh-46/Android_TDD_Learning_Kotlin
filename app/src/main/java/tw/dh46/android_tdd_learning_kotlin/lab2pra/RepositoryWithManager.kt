@@ -1,4 +1,4 @@
-package tw.dh46.android_tdd_learning_kotlin.repository
+package tw.dh46.android_tdd_learning_kotlin.lab2pra
 
 /**
  *  Created by DanielHuang on 2020/4/9

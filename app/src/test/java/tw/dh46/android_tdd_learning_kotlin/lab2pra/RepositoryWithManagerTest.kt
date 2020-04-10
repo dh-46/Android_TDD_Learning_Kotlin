@@ -1,9 +1,7 @@
-package tw.dh46.android_tdd_learning_kotlin
+package tw.dh46.android_tdd_learning_kotlin.lab2pra
 
 import org.junit.Test
 import org.mockito.Mockito.*
-import tw.dh46.android_tdd_learning_kotlin.repository.ISharedPreferenceManager
-import tw.dh46.android_tdd_learning_kotlin.repository.RepositoryWithManager
 
 /**
  *  Created by DanielHuang on 2020/4/9

@@ -6,8 +6,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import tw.dh46.android_tdd_learning_kotlin.repository.Repository
-import tw.dh46.android_tdd_learning_kotlin.verification.RegisterVerify
+import tw.dh46.android_tdd_learning_kotlin.lab2.Repository
+import tw.dh46.android_tdd_learning_kotlin.lab1.RegisterVerify
 
 /**
  * 這裡有一個範例是註冊的功能。輸入帳號及密碼後可註冊為會員。
@@ -65,7 +65,8 @@ class MainActivity : AppCompatActivity() {
     private fun verify() {
         val loginId = editAccount.text.toString()
         val pwd = editPassword.text.toString()
-        var registerVerify = RegisterVerify()
+        var registerVerify =
+            RegisterVerify()
         // 驗證帳號的邏輯被提取出去
         var isLoginIdOK = registerVerify.isLoginIdVerify(loginId)
 

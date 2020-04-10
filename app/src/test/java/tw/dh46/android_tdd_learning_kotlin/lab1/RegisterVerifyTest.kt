@@ -1,10 +1,9 @@
-package tw.dh46.android_tdd_learning_kotlin
+package tw.dh46.android_tdd_learning_kotlin.lab1
 
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
-import tw.dh46.android_tdd_learning_kotlin.verification.RegisterVerify
 
 /**
  *  Created by DanielHuang on 2020/4/9
@@ -17,7 +16,8 @@ class RegisterVerifyTest {
 
     @Before
     fun setup(){
-        registerVerify = RegisterVerify()
+        registerVerify =
+            RegisterVerify()
     }
 
     @Test
