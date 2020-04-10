@@ -22,6 +22,10 @@ import org.mockito.Mockito.*
  *  4. 使用verify method，驗證模擬物件是否有呼叫putString，並傳入正確的參數
  *  5. 檢查SharedPreference是否有呼叫commit
  *
+ *  --------------------------------------------------
+ *  TestCode --測試--> Repository.saveUserId() (SUT)
+ *           --驗證是否有正確與mock互動--> mock(SharedPreference) (MOCK)
+ *
  */
 class RepositoryTest {
 
