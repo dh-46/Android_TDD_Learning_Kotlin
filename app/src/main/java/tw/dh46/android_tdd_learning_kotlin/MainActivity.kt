@@ -77,12 +77,21 @@ class MainActivity : AppCompatActivity() {
             // 註冊成功 儲存ID
             Repository(this).saveUserId(loginId)
             // 開啟成功畫面
-            startActivity(Intent(this, ResultActivity::class.java))
+            var intent = Intent(this, ResultActivity::class.java)
+            // Lab4: 開啟後帶id
+            intent.putExtra("ID",loginId)
+            startActivity(intent)
         } else {
             if (!isLoginIdOK) {
+                val builder = AlertDialog.Builder(this)
                 Toast.makeText(this, "帳號不符規則", Toast.LENGTH_SHORT).show()
+                builder.setMessage("帳號至少要6碼，第1碼為英文").setTitle("錯誤")
+                builder.show()
             } else if (!isPasswordOk) {
                 Toast.makeText(this, "密碼不符規則", Toast.LENGTH_SHORT).show()
+                val builder = AlertDialog.Builder(this)
+                builder.setMessage("密碼至少要8碼，第1碼為英文，並包含1碼數字").setTitle("錯誤")
+                builder.show()
             }
         }
     }
