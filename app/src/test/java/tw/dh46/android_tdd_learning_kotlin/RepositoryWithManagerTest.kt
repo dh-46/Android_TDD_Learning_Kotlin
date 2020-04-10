@@ -19,10 +19,19 @@ class RepositoryWithManagerTest {
 
         // 執行要測試的行為
         val userId = "A2134565"
+        val preKey = "UserId"
         repositoryWithManager.saveUserId(userId)
 
-        // 驗證是否有執行該方法
-        // FIXME: 如何去驗證輸入的值呢?
-        verify(sharedPreferenceManager).insertString("UserId", userId)
+        // 驗證是否有執行該方法以及是否有正確的值
+        verify(sharedPreferenceManager).insertString(
+            preKey,
+            userId
+        )
+
+        // 驗證是否有執行該方法，不管其值
+//        verify(sharedPreferenceManager).insertString(
+//            ArgumentMatchers.anyString(),
+//            ArgumentMatchers.anyString()
+//        )
     }
 }
