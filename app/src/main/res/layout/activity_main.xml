@@ -13,23 +13,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="帳號 (至少需6碼，第1碼為英文)"/>
+        android:hint="帳號 (至少需6碼，第1碼為英文)" />
+
     <EditText
         android:id="@+id/edit_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="密碼 (至少需8碼，第1碼為英文，並包含1碼數字)"/>
+        android:hint="密碼 (至少需8碼，第1碼為英文，並包含1碼數字)" />
 
     <Button
         android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="註冊"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="8dp"
+        android:text="註冊" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sample_info"/>
+        android:text="@string/sample_info" />
 
+    <!--  Lab6_客製化View的測試  -->
+    <tw.dh46.android_tdd_learning_kotlin.lab6.NumberSelectView
+        android:id="@+id/view_number_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:default_value="5"
+        app:max_value="10"
+        app:min_value="1" />
 </LinearLayout>

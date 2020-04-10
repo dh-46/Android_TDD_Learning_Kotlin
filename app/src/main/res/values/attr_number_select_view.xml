@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 設定custom attributes -->
+<resources>
+    <declare-styleable name="NumberSelectView">
+        <!-- 可指定預設值 -->
+        <attr name="default_value" format="integer" />
+        <!-- 可指定最小值 -->
+        <attr name="min_value" format="integer" />
+        <!-- 可指定最大值 -->
+        <attr name="max_value" format="integer" />
+    </declare-styleable>
+</resources>
