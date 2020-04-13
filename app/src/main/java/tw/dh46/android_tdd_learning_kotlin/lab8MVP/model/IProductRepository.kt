@@ -13,6 +13,9 @@ interface IProductRepository {
     // 傳入商品編號，取得商品資料
     fun getProduct(productId: String, loadProductCallback: LoadProductCallback)
 
+    // 購買商品
+    fun buy(productId: String, numbers: Int, callback: BuyProductCallback)
+
 
     /**
      * 資料回傳的介面
@@ -20,5 +23,10 @@ interface IProductRepository {
     interface LoadProductCallback {
         // 回傳商品資料的Response
         fun onProductResult(productResponse: ProductResponse)
+    }
+
+    interface BuyProductCallback {
+
+        fun onBuyResult(isSuccess: Boolean)
     }
 }

@@ -14,11 +14,20 @@ class ProductContract {
 
         // 取得資料後的Callback
         fun onGetResult(productResult: ProductResponse)
+
+        // 購買成功的Callback
+        fun onBuySuccess()
+
+        // 購買失敗的Callback
+        fun onBuyFailure()
     }
 
     interface IProductPresenter {
 
         // 取得商品資料
         fun getProduct(productId: String)
+
+        // 購買商品
+        fun buy(productId: String, numbers: Int)
     }
 }

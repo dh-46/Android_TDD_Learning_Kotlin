@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import tw.dh46.android_tdd_learning_kotlin.R
 import tw.dh46.android_tdd_learning_kotlin.lab8MVP.api.ProductAPI
 import tw.dh46.android_tdd_learning_kotlin.lab8MVP.api.ProductResponse
@@ -67,5 +69,15 @@ class ProductActivity : AppCompatActivity(), ProductContract.IProductView {
         currencyFormat.maximumFractionDigits = 0
         val price = currencyFormat.format(productResult.price)
         tvProductPrice.text = price
+    }
+
+    override fun onBuySuccess() {
+        Toast.makeText(this, "購買成功", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onBuyFailure() {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("購買失敗").setTitle("錯誤")
+        builder.show()
     }
 }

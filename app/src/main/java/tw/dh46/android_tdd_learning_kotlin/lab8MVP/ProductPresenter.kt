@@ -22,4 +22,16 @@ class ProductPresenter(val view: ProductContract.IProductView,
             }
         })
     }
+
+    override fun buy(productId: String, numbers: Int) {
+        model.buy(productId, numbers, object : IProductRepository.BuyProductCallback{
+            override fun onBuyResult(isSuccess: Boolean) {
+                if (isSuccess) {
+                    view.onBuySuccess()
+                } else {
+                    view.onBuyFailure()
+                }
+            }
+        })
+    }
 }
