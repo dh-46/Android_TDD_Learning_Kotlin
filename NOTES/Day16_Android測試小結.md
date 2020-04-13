@@ -54,5 +54,9 @@
 
 #### 測試行為 (在驗證註冊的範例中)
 
-- UI Test: 是驗證顯示的文字
-- Robolectric: 驗證Intent
+- UI Test: 是驗證註冊成功後，是否有在畫面上看到註冊成功的文字。
+- Robolectric: 驗證傳給Intent的值是否正確。
+
+## 資料來源
+
+[Day16 - Android 測試小結 ](https://ithelp.ithome.com.tw/articles/10222724)
