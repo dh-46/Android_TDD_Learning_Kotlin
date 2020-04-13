@@ -41,4 +41,10 @@
         app:default_value="5"
         app:max_value="10"
         app:min_value="1" />
+
+    <Button
+        android:id="@+id/btn_product_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lab8_商品頁"/>
 </LinearLayout>

@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import tw.dh46.android_tdd_learning_kotlin.lab2.Repository
 import tw.dh46.android_tdd_learning_kotlin.lab1.RegisterVerify
+import tw.dh46.android_tdd_learning_kotlin.lab8MVP.ProductActivity
 
 /**
  * 這裡有一個範例是註冊的功能。輸入帳號及密碼後可註冊為會員。
@@ -25,6 +26,7 @@ import tw.dh46.android_tdd_learning_kotlin.lab1.RegisterVerify
 class MainActivity : AppCompatActivity() {
 
     lateinit var btnRegister: Button
+    lateinit var btnProductPage: Button
     lateinit var editAccount: EditText
     lateinit var editPassword: EditText
 
@@ -39,6 +41,10 @@ class MainActivity : AppCompatActivity() {
         editAccount = findViewById(R.id.edit_account)
         editPassword = findViewById(R.id.edit_password)
         btnRegister = findViewById(R.id.btn_register)
+        btnProductPage = findViewById(R.id.btn_product_page)
+        btnProductPage.setOnClickListener {
+            startActivity(Intent(this, ProductActivity::class.java))
+        }
 
         btnRegister.setOnClickListener {
             verify()
