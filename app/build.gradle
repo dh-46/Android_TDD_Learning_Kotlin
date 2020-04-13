@@ -23,10 +23,47 @@ android {
         }
     }
 
+    // Day15_Gradle ProductFlavor
+    // 每一個flavor都必須被assign到一個dimension
+    // dimension 像是一個flavor group一樣
+    flavorDimensions "version"
+
+    productFlavors {
+        // Mock 版
+        mock {
+            // Assigns this product flavor to the "version" flavor dimension.
+            // If you are using only one dimension, this property is optional,
+            // and the plugin automatically assigns all the module's flavors to
+            // that dimension.
+            dimension "version"
+            applicationIdSuffix ".mock"
+            versionNameSuffix "-mock"
+        }
+
+        // 正式版
+        prod {
+
+        }
+    }
+
     // Robolectric Setup
     testOptions {
         unitTests {
             includeAndroidResources = true
+        }
+    }
+
+    // Day15_Gradle SourceSet
+    sourceSets {
+        String sharedTestDir = 'src/sharedTest/java'
+        String fakeJsonDir = 'src/sharedTest/fakejson'
+        test {
+            java.srcDir sharedTestDir
+            resources.srcDirs += fakeJsonDir
+        }
+        androidTest {
+            java.srcDir sharedTestDir
+            resources.srcDirs += fakeJsonDir
         }
     }
 
