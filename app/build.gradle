@@ -95,4 +95,7 @@ dependencies {
 
     // Robolectric 測試框架
     testImplementation 'org.robolectric:robolectric:4.3.1'
+
+    // ViewModel Test
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
 }
