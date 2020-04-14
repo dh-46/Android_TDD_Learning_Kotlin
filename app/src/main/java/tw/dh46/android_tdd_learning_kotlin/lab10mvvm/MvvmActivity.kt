@@ -3,6 +3,7 @@ package tw.dh46.android_tdd_learning_kotlin.lab10mvvm
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import tw.dh46.android_tdd_learning_kotlin.R
 import tw.dh46.android_tdd_learning_kotlin.databinding.ActivityMvvmBinding
 import tw.dh46.android_tdd_learning_kotlin.lab8MVP.api.ProductAPI
@@ -37,18 +38,27 @@ class MvvmActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityMvvmBinding
     private val productId = "pixel3"
 
+    private lateinit var productViewModel: ProductViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // setContentView(R.layout.activity_mvvm)
 
         mBinding = DataBindingUtil.setContentView<ActivityMvvmBinding>(this, R.layout.activity_mvvm)
 
-        // 使用MVP練習時的ProductAPI
-        var productAPI = ProductAPI()
-        var productRepository = ProductRepository(productAPI)
+//        // 使用MVP練習時的ProductAPI
+//        var productAPI = ProductAPI()
+//        var productRepository = ProductRepository(productAPI)
+//        // 初始化ViewModel
+//        val productViewModel = ProductViewModel(productRepository)
 
-        // 初始化ViewModel
-        val productViewModel = ProductViewModel(productRepository)
+        // Day20_MVVM_ViewModel
+        val productAPI = ProductAPI()
+        val productRepository = ProductRepository(productAPI)
+
+        // NOTE: ViewModelProviders.of() is deprecated, use ViewModelProvider() instead
+        productViewModel =
+            ViewModelProvider(this, ProductViewModelFactory(productRepository)).get(ProductViewModel::class.java)
 
         mBinding.productViewModel = productViewModel
 
