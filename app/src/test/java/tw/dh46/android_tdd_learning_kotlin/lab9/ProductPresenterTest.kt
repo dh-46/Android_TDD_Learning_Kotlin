@@ -24,6 +24,23 @@ import tw.dh46.android_tdd_learning_kotlin.lab8MVP.model.IProductRepository
  *  1. 建立被測試物件: IProductPresenter
  *  2. 建立 Mock: IProductRepository 需要驗證是否有呼叫 IProductRepository 的Callback
  *  3. 建立 Mock: IProductView 需要驗證是否有呼叫 IProductView 的 Callback
+ *  -----------------------------------
+ *  MVP 架構將程式分為Model、View、Presenter。
+ *  Presenter從Repository取得資料後，
+ *  透過View的Interface告訴View要做什麼事。
+ *  而View就只需要處理現在該呈現什麼資料。
+ *  把商業邏輯與View的職責分開，這樣一來就讓可測試性提高了。
+ *
+ *  當我們在測試Presenter，只關注：
+ *  1.是否呼叫Repository
+ *  2.本身的邏輯是否正確
+ *  3.是否呼叫正確的View Callback
+ *
+ *  如果用Robolectirc來直接測試Activity，只關注。
+ *  1.Activity初始化是否有呼叫IPresenter.getProduct。
+ *  2.呼叫IProductView.onGetResult，是否有將商品結果放到UI上。
+ *  3.呼叫IProductView.onBuySuccess，是否有Toast。
+ *  4.呼叫IProductView.onBuyFail，是否有AlertDialog。
  *
  */
 class ProductPresenterTest {
@@ -96,11 +113,43 @@ class ProductPresenterTest {
      */
     @Test
     fun buySuccessTest(){
+        // 捕捉購買的Callback
+        val buyProductCallbackCaptor = argumentCaptor<IProductRepository.BuyProductCallback>()
 
+        val productId = "pixel3"
+        val item = 3
+
+        // 呼叫presenter.buy執行購買商品
+        presenter.buy(productId, item)
+
+        // 驗證callback與傳入的參數是否正確
+        Mockito.verify(mockRepository).buy(eq(productId), eq(item), capture(buyProductCallbackCaptor))
+
+        // 取得捕捉的callback
+        buyProductCallbackCaptor.value.onBuyResult(true)
+
+        // 驗證是否有呼叫顯示成功
+        Mockito.verify(mockView).onBuySuccess()
     }
 
+    /**
+     * 購買失敗的測試
+     * (假設Repository.getProduct 購買超過10份即會回傳失敗)
+     * 重點在於驗證presenter與model、view的互動 而非repository buy方法的邏輯正確性
+     */
     @Test
     fun buyFailureTest() {
+        val buyProductCallbackCaptor = argumentCaptor<IProductRepository.BuyProductCallback>()
 
+        val productId = "p3"
+        val item = 11
+
+        presenter.buy(productId, item)
+
+        Mockito.verify(mockRepository).buy(eq(productId), eq(item), capture(buyProductCallbackCaptor))
+
+        buyProductCallbackCaptor.value.onBuyResult(false)
+
+        Mockito.verify(mockView).onBuyFailure()
     }
 }

@@ -11,6 +11,9 @@ import tw.dh46.android_tdd_learning_kotlin.lab8MVP.api.ProductResponse
  */
 class ProductRepository(private val productAPI: IProductAPI) : IProductRepository {
 
+    /**
+     * 取得商品資料
+     */
     override fun getProduct(
         productId: String,
         loadProductCallback: IProductRepository.LoadProductCallback) {
@@ -22,5 +25,21 @@ class ProductRepository(private val productAPI: IProductAPI) : IProductRepositor
                 loadProductCallback.onProductResult(productResponse)
             }
         })
+    }
+
+    /**
+     * 執行購買行為
+     * 假設10個以上
+     */
+    override fun buy(
+        productId: String,
+        numbers: Int,
+        callback: IProductRepository.BuyProductCallback
+    ) {
+        if (numbers > 20) {
+            callback.onBuyResult(false)
+        } else if (numbers in 1..19) {
+            callback.onBuyResult(true)
+        }
     }
 }

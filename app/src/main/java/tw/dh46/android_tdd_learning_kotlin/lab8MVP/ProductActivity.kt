@@ -71,10 +71,16 @@ class ProductActivity : AppCompatActivity(), ProductContract.IProductView {
         tvProductPrice.text = price
     }
 
+    /**
+     * Lab9_購買成功後顯示Toast
+     */
     override fun onBuySuccess() {
         Toast.makeText(this, "購買成功", Toast.LENGTH_SHORT).show()
     }
 
+    /**
+     * Lab9_購買失敗顯示錯誤對話框
+     */
     override fun onBuyFailure() {
         val builder = AlertDialog.Builder(this)
         builder.setMessage("購買失敗").setTitle("錯誤")
