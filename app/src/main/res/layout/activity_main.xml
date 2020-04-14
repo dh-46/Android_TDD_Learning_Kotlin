@@ -47,4 +47,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Lab8_商品頁"/>
+
+    <Button
+        android:id="@+id/btn_product_mvvm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lab10_MVVM_商品"/>
 </LinearLayout>

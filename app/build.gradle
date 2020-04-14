@@ -2,6 +2,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+// Day19_MVVM_DataBinding
+apply plugin: "kotlin-kapt"
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -67,6 +70,10 @@ android {
         }
     }
 
+    // Day19_MVVM_DataBinding
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
