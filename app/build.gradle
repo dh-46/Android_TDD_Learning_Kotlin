@@ -3,7 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 // Day19_MVVM_DataBinding
-apply plugin: "kotlin-kapt"
+// NOTE: MVVM Unit Test 測試時發現會造成databindingImpl cannot find symbol
+//apply plugin: "kotlin-kapt"
 
 android {
     compileSdkVersion 29
@@ -39,7 +40,7 @@ android {
             // and the plugin automatically assigns all the module's flavors to
             // that dimension.
             dimension "version"
-            applicationIdSuffix ".mock"
+//            applicationIdSuffix ".mock"
             versionNameSuffix "-mock"
         }
 

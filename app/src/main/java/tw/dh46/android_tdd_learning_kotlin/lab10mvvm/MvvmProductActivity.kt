@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import tw.dh46.android_tdd_learning_kotlin.R
-import tw.dh46.android_tdd_learning_kotlin.databinding.ActivityMvvmBinding
+import tw.dh46.android_tdd_learning_kotlin.databinding.ActivityProductMvvmBinding
 import tw.dh46.android_tdd_learning_kotlin.lab8MVP.api.ProductAPI
 import tw.dh46.android_tdd_learning_kotlin.lab8MVP.model.ProductRepository
 
@@ -33,9 +33,9 @@ import tw.dh46.android_tdd_learning_kotlin.lab8MVP.model.ProductRepository
  * - 將UI與Data Model繫結。
  * - 綁定事件，點擊購買的事件。
  */
-class MvvmActivity : AppCompatActivity() {
+class MvvmProductActivity : AppCompatActivity() {
 
-    private lateinit var mBinding: ActivityMvvmBinding
+    private lateinit var mBinding: ActivityProductMvvmBinding
     private val productId = "pixel3"
 
     private lateinit var productViewModel: ProductViewModel
@@ -44,7 +44,7 @@ class MvvmActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         // setContentView(R.layout.activity_mvvm)
 
-        mBinding = DataBindingUtil.setContentView<ActivityMvvmBinding>(this, R.layout.activity_mvvm)
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_product_mvvm)
 
 //        // 使用MVP練習時的ProductAPI
 //        var productAPI = ProductAPI()

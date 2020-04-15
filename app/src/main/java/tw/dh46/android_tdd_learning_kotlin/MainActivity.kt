@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import tw.dh46.android_tdd_learning_kotlin.lab2.Repository
 import tw.dh46.android_tdd_learning_kotlin.lab1.RegisterVerify
-import tw.dh46.android_tdd_learning_kotlin.lab10mvvm.MvvmActivity
+import tw.dh46.android_tdd_learning_kotlin.lab10mvvm.MvvmProductActivity
 import tw.dh46.android_tdd_learning_kotlin.lab8MVP.ProductActivity
 
 /**
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         }
         btnProductMvvm = findViewById(R.id.btn_product_mvvm)
         btnProductMvvm.setOnClickListener {
-            startActivity(Intent(this, MvvmActivity::class.java))
+            startActivity(Intent(this, MvvmProductActivity::class.java))
         }
 
         btnRegister.setOnClickListener {

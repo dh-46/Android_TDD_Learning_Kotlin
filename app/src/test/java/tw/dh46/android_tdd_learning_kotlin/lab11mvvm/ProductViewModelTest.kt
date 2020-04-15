@@ -24,6 +24,7 @@ import tw.dh46.android_tdd_learning_kotlin.lab9.eq
 class ProductViewModelTest {
 
     /**
+     * FIXME: Why?
      * java.lang.RuntimeException: Method getMainLooper in android.os.Looper not mocked.
      * 沒加下面的Code 會出上面的Exception
      */
@@ -77,5 +78,59 @@ class ProductViewModelTest {
         Assert.assertEquals(productResponse.name, viewModel.productName.value)
         Assert.assertEquals(productResponse.desc, viewModel.productDesc.value)
         Assert.assertEquals(productResponse.price, viewModel.productPrice.value)
+    }
+
+    /**
+     * 當購買成功時只需要知道buySuccessText是否有改變
+     * 是否有跳出顯示就是View的事情了
+     * 這裡採取模糊比對的方式，來測試是否有顯示，
+     * 避免之後文字變更後測試就無效了。
+     */
+    @Test
+    fun buyProductSuccessTest(){
+        // 負責捕捉購買Callback
+        val buyProductCallbackCaptor = argumentCaptor<IProductRepository.BuyProductCallback>()
+
+        // 設定預設值
+        val productId = "pixel3"
+        val items = "3"
+        viewModel.productId.value = productId
+        viewModel.productItems.value = items
+
+        // 執行被測試程式碼
+        viewModel.buy()
+
+        // 驗證是否有呼叫buy()方法
+        Mockito.verify(repository).buy(eq(productId), eq(Integer.parseInt(items)), capture(buyProductCallbackCaptor))
+
+        // 攔截callback並給值
+        buyProductCallbackCaptor.value.onBuyResult(true)
+
+        // 驗證buySuccessText是否有值來確定有呼叫成功
+        Assert.assertTrue(viewModel.buySuccessText.value != null)
+    }
+
+    /**
+     * 購買失敗
+     * 1.驗證是否有呼叫IProductRepository.buy
+     * 2.驗證購買失敗是否有設定alertText
+     */
+    @Test
+    fun buyFailureTest(){
+        val buyProductCallbackCaptor = argumentCaptor<IProductRepository.BuyProductCallback>()
+
+        val productId = "pixel3"
+        val items = "3"
+
+        viewModel.productId.value = productId
+        viewModel.productItems.value = items
+
+        viewModel.buy()
+
+        Mockito.verify(repository).buy(eq(productId), eq(Integer.parseInt(items)), capture(buyProductCallbackCaptor))
+
+        buyProductCallbackCaptor.value.onBuyResult(false)
+
+        Assert.assertTrue(viewModel.alertText.value != null)
     }
 }

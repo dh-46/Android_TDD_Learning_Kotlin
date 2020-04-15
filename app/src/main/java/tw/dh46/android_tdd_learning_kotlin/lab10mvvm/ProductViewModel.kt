@@ -3,6 +3,7 @@ package tw.dh46.android_tdd_learning_kotlin.lab10mvvm
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import tw.dh46.android_tdd_learning_kotlin.lab10mvvm.utils.Event
 import tw.dh46.android_tdd_learning_kotlin.lab8MVP.api.ProductResponse
 import tw.dh46.android_tdd_learning_kotlin.lab8MVP.model.IProductRepository
 import tw.dh46.android_tdd_learning_kotlin.lab8MVP.model.ProductRepository
@@ -38,12 +39,22 @@ import tw.dh46.android_tdd_learning_kotlin.lab8MVP.model.ProductRepository
  * - 解決Configuration Change的問題
  */
 class ProductViewModel(private val productRepository: IProductRepository) : ViewModel() {
+
+    var productId: MutableLiveData<String> = MutableLiveData()
+
     var productName: MutableLiveData<String> = MutableLiveData<String>()
     var productDesc: MutableLiveData<String> = MutableLiveData()
     var productPrice: MutableLiveData<Int> = MutableLiveData()
     var productItems: MutableLiveData<String> = MutableLiveData()
 
+    // 購買成功顯示文字
+    var buySuccessText: MutableLiveData<Event<String>> = MutableLiveData()
+    // 購買失敗顯示文字
+    var alertText: MutableLiveData<Event<String>> = MutableLiveData()
+
     fun getProduct(productId: String) {
+        this.productId.value = productId
+
         productRepository.getProduct(productId, object : IProductRepository.LoadProductCallback{
             override fun onProductResult(productResponse: ProductResponse) {
                 productName.value = productResponse.name
@@ -53,7 +64,27 @@ class ProductViewModel(private val productRepository: IProductRepository) : View
         })
     }
 
+    /**
+     * 1.購買成功將buySuccessText 指定為Event("購買成功")
+     * 2.購買失敗將buyFailText 指定為Event("購買失敗")
+     *
+     * TODO: 為什麼要用Event包裝，看下面連結
+     * https://medium.com/androiddevelopers/livedata-with-snackbar-navigation-and-other-events-the-singleliveevent-case-ac2622673150
+     */
     fun buy(){
-        println("Buy")
+        // println("Buy")
+        val productId = productId.value ?: ""
+        val numbers = Integer.parseInt((productItems.value ?: "0"))
+
+        productRepository.buy(productId, numbers, object : IProductRepository.BuyProductCallback {
+            override fun onBuyResult(isSuccess: Boolean) {
+                if (isSuccess) {
+                    buySuccessText.value = Event("購買成功")
+                } else {
+                    alertText.value = Event("購買失敗")
+                }
+            }
+        })
+
     }
 }
